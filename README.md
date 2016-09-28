@@ -1,4 +1,4 @@
-Heartbeat
+![](https://static.eyskens.me/f91010_none.png) Heartbeat
 =========
 Heartbeat is a simply service written in Node.js to perform checks on servers and report failed tests. 
 
