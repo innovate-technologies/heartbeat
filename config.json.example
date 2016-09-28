@@ -15,6 +15,14 @@
             "match": "OK",
             "url": "https://swift.innovatete.ch/healthcheck",
             "interval": 1000
+        },
+        {
+            "name":"Helium",
+            "type": "http",
+            "check": "match",
+            "match": ".*login_table.*",
+            "url": "https://helium.shoutca.st/login/index.php",
+            "interval": 1000
         }
     ],
     "alerts": {

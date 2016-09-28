@@ -23,6 +23,13 @@ const checkUptime = async (service) => {
             }
         }
 
+        if (service.check === "match") {
+            if (!new RegExp(service.match).test(response.raw.toString())) {
+                down = true
+                sendAlert(service)
+            }
+        }
+
         if (!down) {
             alertsSent = _.without(alertsSent, service.name)
         }
