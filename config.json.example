@@ -1,0 +1,25 @@
+{
+    "services": [
+        {
+            "name":"ITFrame",
+            "type": "http",
+            "check": "responsecode",
+            "code": 200,
+            "url": "https://itframe.innovatete.ch/player/opencast",
+            "interval": 1000
+        },
+        {
+            "name":"Swift",
+            "type": "http",
+            "check": "exactmatch",
+            "match": "OK",
+            "url": "https://swift.innovatete.ch/healthcheck",
+            "interval": 1000
+        }
+    ],
+    "alerts": {
+        "slack": {
+            "url": "https://hooks.slack.com/"
+        }
+    }
+}
