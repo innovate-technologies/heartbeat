@@ -8,5 +8,6 @@ Adding plugins is as simple as making a folder for a node module.
 ## Integrated modules
 ### Checks
 * HTTP with status code check and exact string match
+
 ### Alerts
 * Slack webhooks
