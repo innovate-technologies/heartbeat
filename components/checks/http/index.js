@@ -38,12 +38,24 @@ const checkUptime = async (service) => {
     }
 }
 
-const getResponse = (url) => new Promise((resolve, reject) => {
+const getResponse = (url, retry = 0) => new Promise((resolve, reject) => {
+    retry++
     rest.get(url, { timeout: 10000})
     .on("complete", (body, response) => {
         resolve(response)
     })
-    .on("timeout", reject)
-    .on("error", reject)
-
+    .on("timeout", function () {
+        if (retry > 3) {
+            this.retry(1000)
+        } else {
+            reject()
+        }
+    })
+    .on("error", function () {
+        if (retry > 3) {
+            this.retry(1000)
+        } else {
+            reject()
+        }
+    })
 })
