@@ -13,20 +13,20 @@ const checkUptime = async (service) => {
         if (service.check === "responsecode") {
             if (response.statusCode !== service.code) {
                 down = true
-                sendAlert(service)
+                sendAlert(service, `Got response code ${response.statusCode}`)
             }
         }
         if (service.check === "exactmatch") {
             if (response.rawEncoded !== service.match) {
                 down = true
-                sendAlert(service)
+                sendAlert(service, "Didn't find an exacy match")
             }
         }
 
         if (service.check === "match") {
             if (!new RegExp(service.match).test(response.raw.toString())) {
                 down = true
-                sendAlert(service)
+                sendAlert(service, "Didn't match regex")
             }
         }
 
@@ -34,7 +34,7 @@ const checkUptime = async (service) => {
             alertsSent = _.without(alertsSent, service.name)
         }
     } catch (error) {
-        sendAlert(service)
+        sendAlert(service, error)
     }
 }
 
@@ -48,14 +48,14 @@ const getResponse = (url, retry = 0) => new Promise((resolve, reject) => {
         if (retry > 3) {
             this.retry(1000)
         } else {
-            reject()
+            reject(new Error("timed out"))
         }
     })
     .on("error", function () {
         if (retry > 3) {
             this.retry(1000)
         } else {
-            reject()
+            reject(new Error("Request error"))
         }
     })
 })

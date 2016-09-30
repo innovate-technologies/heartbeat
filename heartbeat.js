@@ -5,13 +5,13 @@ console.log("------------------------------------")
 
 global.alertsSent = [] // array of service names which an alert is sent for
 
-global.sendAlert = (service) => {
+global.sendAlert = (service, error) => {
     if (alertsSent.indexOf(service.name) !== -1) {
         return
     }
     for (let alertService in config.alerts) {
         if (config.alerts.hasOwnProperty(alertService)) {
-            require(`./components/alerts/${alertService}`)(config.alerts[alertService], service)
+            require(`./components/alerts/${alertService}`)(config.alerts[alertService], service, error)
         }
     }
     alertsSent.push(service.name)
