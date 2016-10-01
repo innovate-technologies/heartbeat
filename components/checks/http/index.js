@@ -53,7 +53,7 @@ const getResponse = (url, retry = 0) => new Promise((resolve, reject) => {
     })
     .on("error", function (err) {
         if (retry > 3) {
-            this.retry(1000)
+            this.retry(1500)
         } else {
             reject(new Error("Request error:" + err))
         }
