@@ -51,11 +51,11 @@ const getResponse = (url, retry = 0) => new Promise((resolve, reject) => {
             reject(new Error("timed out"))
         }
     })
-    .on("error", function () {
+    .on("error", function (err) {
         if (retry > 3) {
             this.retry(1000)
         } else {
-            reject(new Error("Request error"))
+            reject(new Error("Request error:" + err))
         }
     })
 })
