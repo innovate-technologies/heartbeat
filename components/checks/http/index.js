@@ -13,7 +13,7 @@ const checkUptime = async (service) => {
         if (service.check === "responsecode") {
             if (response.statusCode !== service.code) {
                 down = true
-                sendAlert(service, `Got response code ${response.statusCode}`)
+                sendAlert(service, `Got response code ${response.statusCode}`, response.raw.toString())
             }
         }
         if (service.check === "exactmatch") {
