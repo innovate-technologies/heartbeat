@@ -1,5 +1,5 @@
 import rest from "restler"
-export default (alertConfig, service, error) => {
+export default (alertConfig, service, error, extraInfo) => {
     rest.postJson(alertConfig.url, {
         username: "Heartbeat",
         "icon_emoji": ":heartbeat:",
@@ -19,6 +19,10 @@ export default (alertConfig, service, error) => {
                 }, {
                     "title": "Error",
                     "value": error.toString(),
+                    "short": false,
+                }, {
+                    "title": "Provided extra info",
+                    "value": extraInfo || "none",
                     "short": false,
                 },
             ],

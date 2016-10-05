@@ -19,14 +19,14 @@ const checkUptime = async (service) => {
         if (service.check === "exactmatch") {
             if (response.rawEncoded !== service.match) {
                 down = true
-                sendAlert(service, "Didn't find an exacy match")
+                sendAlert(service, "Didn't find an exactly match", response.rawEncoded)
             }
         }
 
         if (service.check === "match") {
             if (!new RegExp(service.match).test(response.raw.toString())) {
                 down = true
-                sendAlert(service, "Didn't match regex")
+                sendAlert(service, "Didn't match regex", response.raw.toString())
             }
         }
 
