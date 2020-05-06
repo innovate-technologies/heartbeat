@@ -13,7 +13,13 @@
     "babel-register": "^6.11.5",
     "babel-root-import": "^4.0.1",
     "lodash": "^4.16.2",
-    "restler": "^3.4.0"
+    "restler": "^3.4.0",
+    "snyk": "^1.319.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
